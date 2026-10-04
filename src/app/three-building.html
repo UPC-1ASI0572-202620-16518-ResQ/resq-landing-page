@@ -1,0 +1,46 @@
+<div
+  class="building-panel"
+  id="tecnologia"
+  [attr.data-mode]="mode()"
+  [attr.data-motion]="reduced() ? 'reduced' : 'animated'"
+>
+  <div class="scene-wrap">
+    <div
+      #canvasHost
+      class="building-canvas"
+      tabindex="0"
+      role="group"
+      [attr.aria-label]="
+        language.t(
+          'Edificio 3D: arrastra para rotar, rueda o pinza para zoom, flechas y más o menos con teclado.',
+          '3D building: drag to rotate, wheel or pinch to zoom, arrow and plus or minus keys for keyboard control.'
+        )
+      "
+      (keydown)="keyboard($event)"
+    ></div>
+    @if (!ready()) {
+      <p class="scene-status" role="status">
+        {{
+          unavailable()
+            ? language.t(
+                'Explora las funciones de ResQ con las tarjetas.',
+                'Explore ResQ features through the cards.'
+              )
+            : language.t('Cargando vista 3D…', 'Loading 3D view…')
+        }}
+      </p>
+    }
+    @if (tooltip()) {
+      <div class="sensor-tooltip" role="status">
+        {{ language.text(tooltip())
+        }}<span>{{
+          language.t(
+            'Sensor conceptual / zona ilustrativa',
+            'Conceptual sensor / illustrative zone'
+          )
+        }}</span>
+      </div>
+    }
+    <span class="scene-caption">{{ language.text(states[mode()]) }}</span>
+  </div>
+</div>

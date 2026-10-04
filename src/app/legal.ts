@@ -9,7 +9,13 @@ export class LegalPage {
   route = inject(ActivatedRoute);
   kind: 'privacy' | 'terms' = this.route.snapshot.data['kind'];
   sections = LEGAL_CONTENT[this.kind];
-  legal = RESQ_LEGAL;
+  get legal() {
+    return {
+      ...RESQ_LEGAL,
+      entity: this.language.t('ResQ — Proyecto académico', 'ResQ — Academic project'),
+      address: this.language.t('Lima, Perú', 'Lima, Peru'),
+    };
+  }
   t(es: string, en: string) {
     return this.language.t(es, en);
   }

@@ -6,6 +6,7 @@ import { LanguageService } from './language';
 import { LEGAL_CONTENT } from './legal.content';
 import { vi } from 'vitest';
 import { HeroCarousel } from './hero';
+import { LANDING_COPY } from './landing.copy';
 import { videoDestination } from './video';
 describe('ResQ', () => {
   beforeEach(async () => {
@@ -36,7 +37,7 @@ describe('ResQ', () => {
     const router = TestBed.inject(Router);
     await router.navigateByUrl('/privacy');
     await fixture.whenStable();
-    expect(fixture.nativeElement.querySelectorAll('.legal-section')).toHaveLength(17);
+    expect(fixture.nativeElement.querySelectorAll('.legal-section')).toHaveLength(4);
     expect(document.title).toContain('Política de privacidad');
     TestBed.inject(LanguageService).set('en');
     await fixture.whenStable();
@@ -44,12 +45,45 @@ describe('ResQ', () => {
     await router.navigateByUrl('/terms');
     await fixture.whenStable();
     expect(fixture.nativeElement.querySelector('main')?.textContent).toContain(
-      'substitute for public emergency services',
+      'replace emergency services',
     );
     await router.navigateByUrl('/');
     await fixture.whenStable();
-    expect(document.title).toBe('ResQ · Detect. Alert. Protect.');
+    expect(document.title).toBe('ResQ');
     expect(fixture.nativeElement.querySelectorAll('.hero-slide')).toHaveLength(2);
+  });
+  it('keeps final navigation, contact actions and all landing sections translated', async () => {
+    const fixture = TestBed.createComponent(App);
+    await TestBed.inject(Router).navigateByUrl('/');
+    await fixture.whenStable();
+    const dom = fixture.nativeElement as HTMLElement;
+    const telLinks = dom.querySelectorAll('resq-solutions a');
+    expect(telLinks).toHaveLength(2);
+    telLinks.forEach((link) => expect(link.getAttribute('href')).toBe('tel:+51948742332'));
+    expect(dom.querySelector('a[aria-label="GitHub"]')?.getAttribute('href')).toBe(
+      'https://github.com/UPC-1ASI0572-202620-16518-ResQ',
+    );
+    expect(dom.querySelector('footer .language-switch')).toBeNull();
+    expect(dom.querySelector('.carousel-controls button[aria-label="Pausar carrusel"]')).toBeNull();
+    expect(dom.querySelectorAll('.team-member')).toHaveLength(5);
+    expect(dom.querySelector('.building-tools')).toBeNull();
+    expect(dom.querySelector('.sensor-tools')).toBeNull();
+    const language = TestBed.inject(LanguageService);
+    language.set('en');
+    await fixture.whenStable();
+    expect(dom.querySelector('#benefits-heading')?.textContent).toContain('More control');
+    expect(dom.querySelector('#product-heading')?.textContent).toContain('From detection');
+    expect(dom.querySelector('#infrastructure-heading')?.textContent).toContain(
+      'Protect your infrastructure',
+    );
+    expect(dom.querySelector('#closing-heading')?.textContent).toContain('Bring');
+    const forbidden = /\bpendiente\b|por configurar|placeholder|to confirm|por confirmar/i;
+    expect(forbidden.test(dom.textContent || '')).toBe(false);
+    for (const sections of Object.values(LEGAL_CONTENT))
+      for (const section of sections) {
+        expect(forbidden.test(section.bodyEs + section.bodyEn)).toBe(false);
+      }
+    for (const [es, en] of Object.entries(LANDING_COPY)) expect(language.text(es)).toBe(en);
   });
   it('persists the language and translates all legal sections', () => {
     const language = TestBed.inject(LanguageService);
@@ -58,7 +92,7 @@ describe('ResQ', () => {
     expect(localStorage.getItem('resq-language')).toBe('en');
     expect(language.t('Español', 'English')).toBe('English');
     for (const sections of Object.values(LEGAL_CONTENT)) {
-      expect(sections).toHaveLength(17);
+      expect(sections).toHaveLength(4);
       for (const section of sections) {
         expect(section.titleEs).toBeTruthy();
         expect(section.titleEn).toBeTruthy();

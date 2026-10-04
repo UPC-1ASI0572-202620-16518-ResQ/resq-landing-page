@@ -1,0 +1,49 @@
+<section
+  resqSharedHeight
+  class="why-section section section-standard"
+  id="solucion"
+  [attr.lang]="language.current()"
+  aria-labelledby="why-heading"
+>
+  <div class="container why-grid">
+    <header class="why-intro">
+      <p class="eyebrow">{{ tr('EL VALOR DE RESQ') }}</p>
+      <h2 id="why-heading">{{ tr('Seguridad inteligente para edificaciones más seguras') }}</h2>
+      <p>
+        {{
+          tr(
+            'ResQ integra dispositivos IoT, monitoreo en tiempo real y automatización para ofrecer una visión centralizada de la infraestructura y facilitar una respuesta oportuna ante situaciones de emergencia.'
+          )
+        }}
+      </p>
+    </header>
+    <div
+      class="why-cards"
+      id="como-funciona"
+      role="group"
+      [attr.aria-label]="language.t('Explora el concepto de ResQ', 'Explore the ResQ concept')"
+    >
+      @for (card of cards; track card.title; let i = $index) {
+        <button
+          class="why-card"
+          [class.active]="active() === i"
+          [attr.aria-pressed]="active() === i"
+          aria-controls="resq-building"
+          (mouseenter)="active.set(i)"
+          (focus)="active.set(i)"
+          (click)="active.set(i)"
+        >
+          <span class="value-icon" aria-hidden="true"
+            ><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path [attr.d]="card.icon" /></svg></span
+          ><span class="value-number" aria-hidden="true">0{{ i + 1 }}</span
+          ><span class="value-text"
+            ><span class="card-title">{{ tr(card.title) }}</span>
+            <span class="card-copy">{{ tr(card.text) }}</span>
+          </span>
+        </button>
+      }
+    </div>
+    <resq-three-building id="resq-building" class="why-building" [mode]="active()" />
+  </div>
+</section>

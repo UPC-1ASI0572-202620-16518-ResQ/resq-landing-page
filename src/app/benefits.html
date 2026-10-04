@@ -1,0 +1,38 @@
+<section
+  class="benefits-section section section-standard"
+  id="beneficios"
+  [attr.lang]="language.current()"
+  aria-labelledby="benefits-heading"
+>
+  <div class="container">
+    <header class="benefits-heading">
+      <p class="eyebrow">{{ tr('BENEFICIOS RESQ') }}</p>
+      <h2 id="benefits-heading">{{ tr('Más control, más seguridad, menos incertidumbre') }}</h2>
+      <p>
+        {{
+          tr(
+            'ResQ ayuda a gestionar riesgos de manera más eficiente, protegiendo a las personas, la infraestructura y la continuidad de las operaciones.'
+          )
+        }}
+      </p>
+    </header>
+    <div class="benefits-grid">
+      @for (benefit of benefits; track benefit.title) {
+        <article class="benefit-card">
+          <span class="benefit-icon"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              aria-hidden="true"
+            >
+              <path [attr.d]="benefit.icon" /></svg
+          ></span>
+          <h3>{{ tr(benefit.title) }}</h3>
+          <p>{{ tr(benefit.text) }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>

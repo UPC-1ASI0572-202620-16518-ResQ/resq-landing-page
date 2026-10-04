@@ -1,0 +1,161 @@
+:host {
+  display: block;
+}
+.allies-section {
+  background: radial-gradient(ellipse at 25% 0, #14273d70, transparent 65%), #071323;
+  color: #f5f8ff;
+  padding: 48px 0 38px;
+  border-top: 1px solid #ffffff08;
+}
+.allies-heading {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 24px;
+}
+.allies-heading .eyebrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  color: #74b9ff;
+  letter-spacing: 0.24em;
+  margin-bottom: 16px;
+}
+.allies-heading .eyebrow:before,
+.allies-heading .eyebrow:after {
+  content: '';
+  width: 48px;
+  height: 1px;
+  background: #479ff5;
+}
+.allies-heading h2 {
+  color: #f6f9ff;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  margin-bottom: 15px;
+  letter-spacing: -0.025em;
+}
+.allies-heading h2 span {
+  color: #419cff;
+}
+.allies-heading > p:last-child {
+  color: #aebfd4;
+  font-size: 1.04rem;
+  line-height: 1.7;
+  margin: 0 auto;
+  max-width: 740px;
+}
+.allies-logos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: center;
+}
+.allies-logos li {
+  min-width: 0;
+  padding: 7px 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 102px;
+}
+.allies-logos li + li:before {
+  content: '';
+  height: 48px;
+  width: 1px;
+  background: #ffffff27;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.allies-logos img {
+  object-fit: contain;
+  max-width: 100%;
+  height: 80px;
+  width: 180px;
+  filter: grayscale(1);
+  opacity: 0.75;
+  transition:
+    opacity 0.2s,
+    filter 0.2s;
+}
+.allies-logos img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+@media (max-width: 760px) {
+  .allies-logos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .allies-logos li {
+    padding: 7px 10px;
+  }
+  .allies-logos li + li:before {
+    display: none;
+  }
+  .allies-section {
+    padding: 38px 0 28px;
+  }
+}
+@media (max-width: 480px) {
+  .allies-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .allies-logos li:last-child {
+    grid-column: 1/-1;
+  }
+  .allies-heading > p:last-child {
+    font-size: 0.97rem;
+  }
+  .allies-heading .eyebrow {
+    font-size: 0.65rem;
+    gap: 10px;
+  }
+  .allies-heading .eyebrow:before,
+  .allies-heading .eyebrow:after {
+    width: 26px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .allies-logos img {
+    transition: none;
+  }
+}
+
+.allies-section {
+  padding: 30px 0 22px;
+}
+.allies-heading {
+  margin-bottom: 12px;
+}
+.allies-logos li {
+  min-height: 85px;
+}
+.ally-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #a4b2c5;
+  gap: 3px;
+  text-align: center;
+}
+.ally-wordmark svg {
+  width: 36px;
+  height: 36px;
+}
+.ally-wordmark span {
+  font-weight: 650;
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ally-wordmark small {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

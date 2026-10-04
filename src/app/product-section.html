@@ -1,0 +1,63 @@
+<section
+  class="product-section section section-standard"
+  id="producto"
+  [attr.lang]="language.current()"
+  aria-labelledby="product-heading"
+>
+  <div class="container product-grid">
+    <div class="product-copy">
+      <p class="eyebrow">{{ tr('SOBRE EL PRODUCTO') }}</p>
+      <h2 id="product-heading">{{ tr('De la detección a la respuesta') }}</h2>
+      <p class="product-lead">
+        {{
+          tr(
+            'ResQ conecta dispositivos IoT, monitoreo inteligente y mecanismos de respuesta para mejorar la seguridad de las edificaciones.'
+          )
+        }}
+      </p>
+      <p>
+        {{
+          tr(
+            'La plataforma centraliza la información de la infraestructura, identifica condiciones de riesgo y facilita una respuesta oportuna ante eventos que pueden afectar a las personas y al entorno.'
+          )
+        }}
+      </p>
+    </div>
+    <div class="product-media">
+      <div class="product-player">
+        @if (video.src) {
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            [src]="video.src"
+            [attr.poster]="video.poster || null"
+            [attr.aria-label]="
+              language.t('Video oficial del producto ResQ', 'Official ResQ product video')
+            "
+          >
+            @if (video.captions) {
+              <track kind="captions" [src]="video.captions" srclang="es" label="Español" default />
+            }
+            {{
+              language.t(
+                'Tu navegador no admite video HTML5.',
+                'Your browser does not support HTML5 video.'
+              )
+            }}
+            <a [href]="video.src">{{
+              language.t('Abrir video oficial de ResQ', 'Open official ResQ video')
+            }}</a
+            >.
+          </video>
+        } @else if (hostedVideo) {
+          <resq-video kind="product" title="About the Product ResQ" />
+        } @else {
+          <div class="product-art" aria-hidden="true">
+            <img src="/media/resq-icon.png" alt="" width="150" height="150" />
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,3 +1,4 @@
+import { LANDING_COPY } from './landing.copy';
 import { Injectable, signal, effect, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 export type Language = 'es' | 'en';
@@ -15,10 +16,10 @@ export class LanguageService {
       document.documentElement.lang = this.current();
       const title =
         this.page() === 'privacy'
-          ? this.t('Política de privacidad · ResQ', 'Privacy Policy · ResQ')
+          ? this.t('ResQ', 'ResQ')
           : this.page() === 'terms'
-            ? this.t('Términos y condiciones · ResQ', 'Terms & Conditions · ResQ')
-            : this.t('ResQ · Detectar. Alertar. Proteger.', 'ResQ · Detect. Alert. Protect.');
+            ? this.t('ResQ', 'ResQ')
+            : this.t('ResQ', 'ResQ');
       const description = this.t(
         'ResQ conecta detección de riesgos, información y respuesta para proteger a las personas y sus espacios.',
         'ResQ connects risk detection, information and response to protect people and their spaces.',
@@ -38,6 +39,9 @@ export class LanguageService {
   t(es: string, en: string) {
     return this.current() === 'es' ? es : en;
   }
+  text(value: string) {
+    return this.current() === 'es' ? value : LANDING_COPY[value] || value;
+  }
   set(language: Language) {
     this.current.set(language);
     try {
@@ -45,3 +49,4 @@ export class LanguageService {
     } catch {}
   }
 }
+

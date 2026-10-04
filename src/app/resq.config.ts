@@ -1,20 +1,18 @@
-// Empty URLs are intentional. Supply only verified ResQ destinations.
 export const RESQ_LINKS = {
   segment01: '',
   segment02: '',
   aboutProductVideo: '',
   aboutTeamVideo: '',
-  contactEmail: '',
+  contactEmail: 'contacto@resq.com',
   canonicalOrigin: '',
 };
 export const RESQ_LEGAL = {
-  entity: '[LEGAL ENTITY]',
-  email: '[CONTACT EMAIL]',
-  jurisdiction: '[JURISDICTION]',
-  address: '[ADDRESS]',
-  updated: '[LAST UPDATED]',
+  entity: 'ResQ — Proyecto académico',
+  email: 'contacto@resq.com',
+  jurisdiction: 'Perú',
+  address: 'Lima, Perú',
+  updated: '2026-10-04',
 };
-// Official segments supplied by the project owner, from the project document.
 export const RESQ_SEGMENTS = [
   {
     id: 'segment01',
@@ -98,8 +96,39 @@ export const RESQ_VIDEOS = {
   product: { url: RESQ_LINKS.aboutProductVideo, provider: 'youtube', duration: '' },
   team: { url: RESQ_LINKS.aboutTeamVideo, provider: 'youtube', duration: '' },
 };
-// All visual slots remain empty until official, approved assets are available.
 export const RESQ_MEDIA: Record<string, string> = {
   'hero-segment-01': '/media/hero-01.png',
   'hero-segment-02': '/media/hero-02.png',
+};
+export const RESQ_PRODUCT_VIDEO = { src: '/media/resq.mp4', poster: '', captions: '' };
+export const RESQ_FOOTER = {
+  phone: '+51 948 742 332',
+  phoneHref: 'tel:+51948742332',
+  location: 'Lima, Perú',
+  socials: [
+    {
+      id: 'github',
+      name: 'GitHub',
+      url: 'https://github.com/UPC-1ASI0572-202620-16518-ResQ',
+      icon: 'M9 19c-5 1-5-3-7-3m14 6v-4c0-1-.4-2-1-2 4-.5 6-2 6-6 0-1-.4-3-1-4 .3-1 .2-2-.2-3-2 0-3 1-4 2a13 13 0 0 0-6 0C9 4 8 3 6 3c-.5 1-.5 2-.2 3C5 7 5 8 5 10c0 4 2 5 6 6-1 0-2 1-2 2v4',
+    },
+    {
+      id: 'linkedin',
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/',
+      icon: 'M5 9v11M5 5v.01M10 20V9m0 5c0-6 9-6 9 0v6',
+    },
+    {
+      id: 'youtube',
+      name: 'YouTube',
+      url: 'https://www.youtube.com/',
+      icon: 'M21 12c0 6-1 7-9 7s-9-1-9-7 1-7 9-7 9 1 9 7ZM10 9l5 3-5 3V9Z',
+    },
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      url: 'https://www.instagram.com/',
+      icon: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4ZM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM17 7h.01',
+    },
+  ],
 };

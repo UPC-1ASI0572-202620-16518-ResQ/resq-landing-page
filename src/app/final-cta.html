@@ -1,0 +1,35 @@
+<section
+  class="closing-section"
+  id="explorar"
+  [attr.lang]="language.current()"
+  aria-labelledby="closing-heading"
+>
+  <div class="container">
+    <div class="closing-copy">
+      <p class="eyebrow">{{ tr('¿LISTO PARA EMPEZAR?') }}</p>
+      <h2 id="closing-heading">
+        {{ language.t('Lleva', 'Bring') }} <span>ResQ</span>
+        {{ language.t('a tu infraestructura.', 'to your infrastructure.') }}
+      </h2>
+      <p>
+        {{
+          tr(
+            'Elige la solución que mejor se adapte a tus necesidades de monitoreo, detección y respuesta ante situaciones de riesgo.'
+          )
+        }}
+      </p>
+      <a class="button primary" href="#soluciones-infraestructura"
+        >{{ tr('Ver soluciones')
+        }}<svg
+          class="cta-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          aria-hidden="true"
+        >
+          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+      ></a>
+    </div>
+  </div>
+</section>

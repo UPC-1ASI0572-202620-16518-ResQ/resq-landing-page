@@ -1,42 +1,36 @@
-<div class="legal container">
-  <a class="legal-back" routerLink="/">← {{ t('Volver a ResQ', 'Back to ResQ') }}</a>
-  <p class="eyebrow">RESQ / {{ t('INFORMACIÓN LEGAL', 'LEGAL INFORMATION') }}</p>
+<div class="legal container" [attr.lang]="language.current()">
+  <a class="legal-back" routerLink="/"
+    ><svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M19 12H5m7-7-7 7 7 7" /></svg
+    ><span>{{ t('Volver a ResQ', 'Back to ResQ') }}</span></a
+  >
+  <p class="eyebrow">{{ t('INFORMACIÓN LEGAL', 'LEGAL INFORMATION') }}</p>
   <h1>{{ title }}</h1>
   <p class="legal-intro">
     {{
-      t(
-        'Información organizada para una lectura clara. Los datos y las condiciones pendientes están señalados de forma explícita.',
-        'Information organized for clear reading. Pending details and conditions are explicitly marked.'
-      )
+      kind === 'privacy'
+        ? t(
+            'Cómo se utiliza la información al visitar este sitio.',
+            'How information is used when visiting this website.'
+          )
+        : t(
+            'Información básica para usar el sitio de ResQ.',
+            'Basic information for using the ResQ website.'
+          )
     }}
   </p>
-  <div class="legal-facts">
-    <span>{{ t('Entidad', 'Entity') }}: {{ legal.entity }}</span
-    ><span>{{ t('Última actualización', 'Last updated') }}: {{ legal.updated }}</span>
-  </div>
-  <p class="draft-notice" role="note">
-    {{
-      t(
-        'BORRADOR PENDIENTE DE VALIDACIÓN. Este contenido requiere completar las prácticas reales del servicio y revisión legal antes de publicarse como política o contrato definitivo.',
-        'DRAFT AWAITING VALIDATION. This content requires the actual service practices to be completed and legal review before publication as a final policy or contract.'
-      )
-    }}
-  </p>
-  <div class="legal-layout">
-    <nav class="legal-index" [attr.aria-label]="t('Índice', 'Contents')">
-      @for (section of sections; track $index; let i = $index) {
-        <a [href]="'/' + kind + '#legal-' + (i + 1)"
-          >{{ i + 1 }}. {{ t(section.titleEs, section.titleEn) }}</a
-        >
-      }
-    </nav>
-    <div>
-      @for (section of sections; track $index; let i = $index) {
-        <section class="legal-section" [id]="'legal-' + (i + 1)">
-          <h2>{{ i + 1 }}. {{ t(section.titleEs, section.titleEn) }}</h2>
-          <p>{{ replace(t(section.bodyEs, section.bodyEn)) }}</p>
-        </section>
-      }
-    </div>
-  </div>
+  @for (section of sections; track $index; let i = $index) {
+    <section class="legal-section" [id]="'legal-' + (i + 1)">
+      <h2>{{ t(section.titleEs, section.titleEn) }}</h2>
+      <p>{{ replace(t(section.bodyEs, section.bodyEn)) }}</p>
+    </section>
+  }
 </div>

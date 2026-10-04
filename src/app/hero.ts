@@ -47,7 +47,7 @@ export class HeroCarousel implements OnDestroy {
   link(index: number) {
     return (
       (index === 0 ? RESQ_LINKS.segment01 : RESQ_LINKS.segment02) ||
-      (index === 0 ? '#como-funciona' : '#segment-2')
+      (index === 0 ? '#como-funciona' : '#contacto')
     );
   }
   ngOnDestroy() {

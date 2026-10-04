@@ -1,0 +1,157 @@
+:host {
+  display: block;
+}
+.why-section {
+  background: radial-gradient(ellipse at 90% 20%, #102947 0, transparent 55%), #081322;
+  color: #f4f8ff;
+  border-top: 1px solid #20354b;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+  grid-template-areas: 'intro visual' 'cards visual';
+  gap: 30px 48px;
+}
+.why-intro {
+  grid-area: intro;
+}
+.why-intro h2 {
+  font-size: clamp(2.2rem, 3.5vw, 3.7rem);
+  line-height: 1.08;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.why-intro > p:last-child {
+  color: #b5c6da;
+  line-height: 1.8;
+  font-size: 1.04rem;
+  margin-bottom: 0;
+}
+.eyebrow {
+  color: #83b9ff;
+}
+.why-cards {
+  grid-area: cards;
+  display: grid;
+  gap: 14px;
+}
+.why-card {
+  display: block;
+  text-align: left;
+  width: 100%;
+  padding: 23px 26px;
+  border: 1px solid #29415b;
+  border-radius: 12px;
+  background: #102238;
+  color: #fff;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s;
+}
+.why-card.active {
+  border-color: #568ee6;
+  background: #132d4b;
+  box-shadow: 0 0 25px #2563eb17;
+}
+.why-card:hover {
+  transform: translateY(-2px);
+}
+.card-title {
+  display: block;
+  font-weight: 650;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  margin-bottom: 9px;
+}
+.card-copy {
+  display: block;
+  color: #b8cadd;
+  font-size: 0.97rem;
+  line-height: 1.7;
+}
+.why-building {
+  grid-area: visual;
+  min-width: 0;
+}
+.why-card:focus-visible {
+  outline: 3px solid #99d9ff;
+  outline-offset: 4px;
+}
+@media (max-width: 1100px) {
+  .why-grid {
+    gap: 24px;
+  }
+  .why-card {
+    padding: 20px;
+  }
+  .why-intro h2 {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 800px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'intro' 'visual' 'cards';
+  }
+  .why-intro {
+    text-align: center;
+    max-width: 680px;
+    margin: auto;
+  }
+  .why-intro h2 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .why-card {
+    transition: none;
+  }
+  .why-card:hover {
+    transform: none;
+  }
+}
+
+.why-section {
+  background: #fff;
+  color: #08111f;
+  border: 0;
+}
+.why-intro h2 {
+  color: #08111f;
+}
+.why-intro > p:last-child {
+  color: #536275;
+}
+.why-section .eyebrow {
+  color: #146bd2;
+}
+.why-grid {
+  gap: 24px 38px;
+}
+.why-card {
+  background: #f5f8fc;
+  color: #08111f;
+  border-color: #d7e3ef;
+  padding: 18px 22px;
+  border-radius: 14px;
+}
+.why-card.active {
+  background: #eef5ff;
+  border-color: #2185f5;
+  box-shadow: 0 0 25px #2185f510;
+}
+.card-copy {
+  color: #536275;
+}
+.why-card:focus-visible {
+  outline-color: #2185f5;
+}
+
+.why-card {
+  padding: 14px 20px;
+}
+.why-grid {
+  gap: 20px 38px;
+}

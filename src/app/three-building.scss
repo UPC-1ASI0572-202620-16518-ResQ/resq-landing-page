@@ -1,0 +1,76 @@
+:host {
+  display: flex;
+  min-width: 0;
+}
+.building-panel {
+  width: 100%;
+  display: flex;
+  position: relative;
+  border-radius: 18px;
+  background: radial-gradient(ellipse at 50% 50%, #193b5e, #081a2e);
+  overflow: hidden;
+  border: 1px solid #cddff0;
+}
+.scene-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 610px;
+}
+.building-canvas {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+  cursor: grab;
+}
+.building-canvas:active {
+  cursor: grabbing;
+}
+.building-canvas:focus-visible {
+  outline: 3px solid #2185f5;
+  outline-offset: -4px;
+}
+.scene-status {
+  position: absolute;
+  inset: 40% 10% auto;
+  text-align: center;
+  color: #d4e3f5 !important;
+  pointer-events: none;
+}
+.sensor-tooltip {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  padding: 12px 16px;
+  border: 1px solid #518bd3;
+  border-radius: 10px;
+  background: #0a1a2eee;
+  color: #fff;
+  pointer-events: none;
+}
+.sensor-tooltip span {
+  display: block;
+  font-size: 0.8rem;
+  color: #c2d4e9;
+}
+.scene-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 22px;
+  color: #c4ddff;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+@media (max-width: 800px) {
+  .scene-wrap {
+    min-height: 430px;
+    flex: none;
+    width: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .scene-wrap {
+    min-height: 360px;
+  }
+}

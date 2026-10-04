@@ -11,110 +11,167 @@
       aria-controls="navigation"
       [attr.aria-label]="t('Abrir o cerrar menú', 'Toggle menu')"
     >
-      {{ menu() ? '×' : '☰' }}
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        aria-hidden="true"
+      >
+        @if (menu()) {
+          <path d="m6 6 12 12M6 18 18 6" />
+        } @else {
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        }
+      </svg>
     </button>
     <nav
       id="navigation"
       [class.open]="menu()"
       [attr.aria-label]="t('Navegación principal', 'Main navigation')"
     >
-      <a routerLink="/" fragment="solucion" (click)="menu.set(false)">{{
-        t('Solución', 'Solution')
-      }}</a
-      ><a routerLink="/" fragment="como-funciona" (click)="menu.set(false)">{{
-        t('Cómo funciona', 'How it works')
-      }}</a
-      ><a routerLink="/" fragment="segmentos" (click)="menu.set(false)">{{
-        t('Segmentos', 'Segments')
-      }}</a
-      ><a routerLink="/" fragment="nosotros" (click)="menu.set(false)">{{
-        t('Nosotros', 'About us')
-      }}</a>
-      <div class="language-switch" role="group" [attr.aria-label]="t('Idioma', 'Language')">
-        <button
-          (click)="language.set('es')"
-          [attr.aria-pressed]="language.current() === 'es'"
-          lang="es"
-          [attr.aria-label]="t('Cambiar a español', 'Switch to Spanish')"
-        >
-          ES</button
-        ><button
-          (click)="language.set('en')"
-          [attr.aria-pressed]="language.current() === 'en'"
-          lang="en"
-          [attr.aria-label]="t('Cambiar a inglés', 'Switch to English')"
-        >
-          EN
-        </button>
+      <div class="header-links">
+        @for (item of navigation; track item.id) {
+          <a routerLink="/" [fragment]="item.id" (click)="menu.set(false)">{{
+            t(item.es, item.en)
+          }}</a>
+        }
       </div>
-      <a class="button nav-cta" routerLink="/" fragment="explorar" (click)="menu.set(false)"
-        >{{ t('Explora ResQ', 'Explore ResQ') }} <span aria-hidden="true">↗</span></a
-      >
+      <div class="header-actions">
+        <button
+          class="language-toggle"
+          type="button"
+          (click)="language.set(language.current() === 'es' ? 'en' : 'es')"
+          [attr.aria-label]="t('Cambiar a inglés', 'Switch to Spanish')"
+          [attr.lang]="language.current()"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9" />
+            <ellipse cx="12" cy="12" rx="4" ry="9" />
+            <path d="M3 12h18" />
+          </svg>
+          <span>{{ language.current() === 'es' ? 'ES' : 'EN' }}</span>
+        </button>
+        <a class="button nav-cta" routerLink="/" fragment="explorar" (click)="menu.set(false)"
+          >{{ t('Explora ResQ', 'Explore ResQ') }}
+          <svg
+            class="cta-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+        ></a>
+      </div>
     </nav>
   </div>
 </header>
 <main id="main" tabindex="-1"><router-outlet /></main>
+
 <footer>
   <div class="container footer-top">
     <div class="footer-brand">
-      <a class="wordmark" routerLink="/"
+      <a class="wordmark" routerLink="/" aria-label="ResQ"
         ><img class="brand-logo" src="/media/resq-logo.png" alt="ResQ" width="170" height="60"
       /></a>
       <p>
         {{
           t(
-            'Conectar la información. Anticipar el riesgo. Acercar la respuesta.',
-            'Connect information. Anticipate risk. Bring response closer.'
+            'Conectamos información. Anticipamos riesgos. Acercamos la respuesta.',
+            'We connect information. Anticipate risks. Bring response closer.'
           )
         }}
       </p>
-      <span class="eyebrow">{{
+      <span class="footer-tagline">{{
         t('TECNOLOGÍA CENTRADA EN LAS PERSONAS', 'PEOPLE-CENTERED TECHNOLOGY')
       }}</span>
     </div>
-    <div>
-      <h3>{{ t('Explorar', 'Explore') }}</h3>
-      <a routerLink="/" fragment="solucion">{{ t('La solución', 'The solution') }}</a
-      ><a routerLink="/" fragment="como-funciona">{{ t('Cómo funciona', 'How it works') }}</a
-      ><a routerLink="/" fragment="nosotros">{{ t('Producto y equipo', 'Product and team') }}</a>
+    <div class="footer-contact">
+      <h3 id="contacto" tabindex="-1">{{ t('Contacto', 'Contact') }}</h3>
+      <div class="contact-row">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="m3 6 9 7 9-7" />
+        </svg>
+        @if (links.contactEmail) {
+          <a [href]="'mailto:' + links.contactEmail">{{ links.contactEmail }}</a>
+        }
+      </div>
+      <div class="contact-row">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
+          <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+          <circle cx="12" cy="10" r="2" /></svg
+        ><span>{{ t('Lima, Perú', 'Lima, Peru') }}</span>
+      </div>
+      <div class="contact-row">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          aria-hidden="true"
+        >
+          <path d="m5 3 4 1 1 5-3 2c2 3 3 4 6 6l2-3 5 1 1 4c-1 4-8 1-12-3S1 4 5 3Z" />
+        </svg>
+        @if (footer.phone && footer.phoneHref) {
+          <a [href]="footer.phoneHref">{{ footer.phone }}</a>
+        }
+      </div>
     </div>
-    <div>
-      <h3>{{ t('Segmentos', 'Segments') }}</h3>
-      @for (segment of segments; track segment.id; let i = $index) {
-        <a routerLink="/" [fragment]="'segment-' + (i + 1)">{{
-          segment.name[language.current()]
-        }}</a>
-      }
-    </div>
-    <div>
-      <h3>{{ t('Contacto', 'Contact') }}</h3>
-      @if (links.contactEmail) {
-        <a [href]="'mailto:' + links.contactEmail">{{ links.contactEmail }}</a>
-      } @else {
-        <span class="contact-pending">{{
-          t('[Contacto por configurar]', '[Contact to configure]')
-        }}</span>
-      }
-      <div
-        class="language-switch"
-        role="group"
-        [attr.aria-label]="t('Idioma del sitio', 'Site language')"
-      >
-        <button (click)="language.set('es')" [attr.aria-pressed]="language.current() === 'es'">
-          ES
-        </button>
-        <button (click)="language.set('en')" [attr.aria-pressed]="language.current() === 'en'">
-          EN
-        </button>
+    <div class="footer-follow">
+      <h3>{{ t('Síguenos', 'Follow us') }}</h3>
+      <div class="social-links">
+        @for (social of footer.socials; track social.id) {
+          @if (social.url) {
+            <a
+              class="social-icon"
+              [href]="social.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              [attr.aria-label]="social.name"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                aria-hidden="true"
+              >
+                <path [attr.d]="social.icon" /></svg
+            ></a>
+          }
+        }
       </div>
     </div>
   </div>
   <div class="container footer-bottom">
-    <span>© {{ year }} ResQ</span>
+    <span>Detect. Alert. Protect.</span>
+    <span>© 2026 ResQ. {{ t('Todos los derechos reservados.', 'All rights reserved.') }}</span>
     <div>
       <a routerLink="/privacy">{{ t('Política de privacidad', 'Privacy Policy') }}</a
       ><a routerLink="/terms">{{ t('Términos y condiciones', 'Terms & Conditions') }}</a>
     </div>
-    <span>{{ t('Detectar. Alertar. Proteger.', 'Detect. Alert. Protect.') }}</span>
   </div>
 </footer>

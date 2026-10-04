@@ -1,10 +1,8 @@
 import { Component, input, inject, signal } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LanguageService } from './language';
-import { MediaSlot } from './media';
+
 import { RESQ_VIDEOS } from './resq.config';
-// Only verified HTTPS providers can be embedded. Stream / Clipchamp share links
-// open on their provider, because they may require sign-in or block embedding.
 export function videoDestination(raw: string): { embed?: string; external?: string } {
   if (!raw) return {};
   try {
@@ -39,7 +37,7 @@ export function videoDestination(raw: string): { embed?: string; external?: stri
 }
 @Component({
   selector: 'resq-video',
-  imports: [MediaSlot],
+
   template: `
     <div
       class="video-frame"
@@ -61,29 +59,22 @@ export function videoDestination(raw: string): { embed?: string; external?: stri
           ×
         </button>
       } @else {
-        <resq-media kind="video" [asset]="'about-' + kind() + '-thumbnail'" [purpose]="title()" />
-        <button
-          class="play"
-          (click)="play()"
-          [attr.aria-label]="language.t('Reproducir: ', 'Play: ') + title()"
-        >
-          <span aria-hidden="true">▶</span>
-        </button>
-        <span class="video-duration">{{
-          config.duration || language.t('Duración pendiente', 'Duration pending')
-        }}</span>
+        <div class="team-video-art" aria-hidden="true">
+          <img src="/media/resq-icon.png" alt="" width="100" height="100" />
+        </div>
+        @if (destination.embed || destination.external) {
+          <button
+            class="play"
+            (click)="play()"
+            [attr.aria-label]="language.t('Reproducir: ', 'Play: ') + title()"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+              <path d="m8 5 11 7-11 7V5Z" />
+            </svg>
+          </button>
+        }
       }
     </div>
-    @if (message()) {
-      <p class="video-message" role="status">
-        {{
-          language.t(
-            'El video oficial todavía no está disponible.',
-            'The official video is not available yet.'
-          )
-        }}
-      </p>
-    }
   `,
 })
 export class VideoSection {

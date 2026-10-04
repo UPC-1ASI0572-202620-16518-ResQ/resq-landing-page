@@ -1,0 +1,76 @@
+<section
+  class="solutions-section section section-standard"
+  id="soluciones-infraestructura"
+  [attr.lang]="language.current()"
+  aria-labelledby="infrastructure-heading"
+>
+  <div class="container">
+    <header class="solutions-heading">
+      <p class="eyebrow">{{ tr('PLANES') }}</p>
+      <h2 id="infrastructure-heading">{{ tr('Protege tu infraestructura con ResQ') }}</h2>
+    </header>
+    <div class="solutions-grid">
+      @for (solution of solutions; track solution.id) {
+        <article
+          class="infrastructure-card"
+          [id]="'solution-' + solution.id"
+          [attr.aria-labelledby]="'title-' + solution.id"
+        >
+          <div class="card-content">
+            <div class="category-row">
+              <span class="segment-number">{{ solution.number }}</span
+              ><span class="category">{{ tr(solution.category) }}</span
+              ><svg
+                class="segment-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                aria-hidden="true"
+              >
+                @if (solution.complex) {
+                  <path
+                    d="M2 21V9h6v12m0 0V3h8v18m0 0V9h6v12M1 21h22M11 7h2m-2 4h2m-2 4h2M4 13h2m12 0h2"
+                  />
+                } @else {
+                  <path
+                    d="M5 21V3h14v18M2 21h20M9 7h2m2 0h2M9 11h2m2 0h2M9 15h2m2 0h2m-6 6v-3h2v3"
+                  />
+                }
+              </svg>
+            </div>
+            <h3 [id]="'title-' + solution.id">{{ tr(solution.title) }}</h3>
+            <p class="description">{{ tr(solution.description) }}</p>
+            <ul>
+              @for (capability of solution.capabilities; track capability) {
+                <li>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    aria-hidden="true"
+                  >
+                    <path d="m5 12 4 4L19 6" /></svg
+                  ><span>{{ tr(capability) }}</span>
+                </li>
+              }
+            </ul>
+            <a class="button primary" href="tel:+51948742332"
+              >{{ tr(solution.cta)
+              }}<svg
+                class="cta-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+            ></a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

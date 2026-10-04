@@ -29,49 +29,106 @@
         [priority]="i === 0"
         [asset]="'hero-segment-0' + (i + 1)"
         [purpose]="segment.name[language.current()]"
-      />
+      ></resq-media>
+
       <div class="hero-overlay"></div>
+
       <div class="hero-copy container">
-        <h1>{{ segment.hero[language.current()] }}</h1>
-        <p class="hero-description">{{ segment.heroCopy[language.current()] }}</p>
-        <a class="button primary" [href]="link(i)"
-          >{{ segment.heroCta[language.current()] }} <span aria-hidden="true">↗</span></a
-        >
+        <h1>
+          @if (i === 0) {
+            {{ t('Cuando el', 'When') }}
+            {{ t('riesgo', 'risk') }}
+            {{ t('aparece,', 'emerges,') }}
+            <span>ResQ</span>
+            {{ t('responde', 'responds') }}
+          } @else {
+            {{ t('Añade', 'Add intelligent') }}
+            {{ t('seguridad', 'safety') }}
+            {{ t('inteligente con', 'with') }}
+            <span>ResQ</span>
+            {{ t('a tus proyectos', 'to your projects') }}
+          }
+        </h1>
+
+        <p class="hero-description">
+          {{ segment.heroCopy[language.current()] }}
+        </p>
+
+        <a class="button primary hero-cta" [href]="link(i)">
+          {{ segment.heroCta[language.current()] }}
+
+          <svg
+            class="cta-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14m-6-6 6 6-6 6"></path>
+          </svg>
+        </a>
       </div>
     </div>
   }
-  <div class="hero-bottom container">
-    <div class="carousel-controls">
+
+  <button
+    class="hero-arrow hero-arrow--prev"
+    type="button"
+    (click)="select(slide() - 1)"
+    [attr.aria-label]="t('Slide anterior', 'Previous slide')"
+  >
+    <svg
+      class="control-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m15 5-7 7 7 7"></path>
+    </svg>
+  </button>
+
+  <button
+    class="hero-arrow hero-arrow--next"
+    type="button"
+    (click)="select(slide() + 1)"
+    [attr.aria-label]="t('Siguiente slide', 'Next slide')"
+  >
+    <svg
+      class="control-icon"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="m9 5 7 7-7 7"></path>
+    </svg>
+  </button>
+
+  <div
+    class="hero-indicators"
+    [attr.aria-label]="t('Navegación del carrusel', 'Carousel navigation')"
+  >
+    @for (segment of segments; track segment.id; let i = $index) {
       <button
-        (click)="select(slide() - 1)"
-        [attr.aria-label]="t('Slide anterior', 'Previous slide')"
+        class="slide-dot"
+        [class.selected]="slide() === i"
+        type="button"
+        [attr.aria-label]="t('Mostrar segmento ', 'Show segment ') + (i + 1)"
+        [attr.aria-pressed]="slide() === i"
+        (click)="select(i)"
       >
-        ←
+        <span></span>
       </button>
-      @for (segment of segments; track segment.id; let i = $index) {
-        <button
-          class="slide-dot"
-          [class.selected]="slide() === i"
-          [attr.aria-label]="t('Mostrar segmento ', 'Show segment ') + (i + 1)"
-          [attr.aria-pressed]="slide() === i"
-          (click)="select(i)"
-        >
-          <span></span>
-        </button>
-      }
-      <button (click)="select(slide() + 1)" [attr.aria-label]="t('Siguiente slide', 'Next slide')">
-        →
-      </button>
-      <button
-        (click)="paused.set(!paused())"
-        [attr.aria-label]="
-          paused()
-            ? t('Reanudar carrusel', 'Resume carousel')
-            : t('Pausar carrusel', 'Pause carousel')
-        "
-      >
-        {{ paused() ? '▶' : 'Ⅱ' }}
-      </button>
-    </div>
+    }
   </div>
 </section>

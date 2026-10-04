@@ -1,0 +1,78 @@
+<section
+  class="team-section section section-standard"
+  id="nosotros"
+  [attr.lang]="language.current()"
+  aria-labelledby="team-heading"
+>
+  <div class="container">
+    <header class="team-heading">
+      <p class="eyebrow">{{ t('SOBRE NOSOTROS', 'ABOUT US') }}</p>
+      <h2 id="team-heading">{{ t('Conoce al equipo', 'Meet the team') }}</h2>
+    </header>
+    <div class="team-grid">
+      @for (member of members; track member.photo) {
+        <article class="team-member">
+          <div class="member-portrait">
+            <img
+              [src]="member.photo"
+              [alt]="t('Fotografía de ', 'Portrait of ') + member.name"
+              loading="lazy"
+              decoding="async"
+              width="400"
+              height="480"
+            />
+          </div>
+          <div class="member-info">
+            <h3>{{ member.name }}</h3>
+            @if (member.role) {
+              <p>{{ member.role[language.current()] }}</p>
+            }
+          </div>
+        </article>
+      }
+    </div>
+    <div class="team-story">
+      <article class="team-video">
+        <resq-video kind="team" [title]="t('Video del equipo', 'About the Team video')" />
+      </article>
+      <div class="institutional">
+        <article class="purpose-panel">
+          <span class="purpose-icon" aria-hidden="true"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m12 3-8 4v6c0 5 8 8 8 8s8-3 8-8V7l-8-4Z" />
+              <path d="m8 12 3 3 5-6" /></svg
+          ></span>
+          <div>
+            <h3>{{ t('Misión', 'Mission') }}</h3>
+            <p>{{ institutional.mission[language.current()] }}</p>
+          </div>
+        </article>
+        <article class="purpose-panel">
+          <span class="purpose-icon" aria-hidden="true"
+            ><svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+              <circle cx="12" cy="12" r="3" /></svg
+          ></span>
+          <div>
+            <h3>{{ t('Visión', 'Vision') }}</h3>
+            <p>{{ institutional.vision[language.current()] }}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,89 @@
+:host {
+  display: block;
+}
+.closing-section {
+  position: relative;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(5, 17, 33, 0.83) 0%,
+      rgba(7, 23, 42, 0.65) 38%,
+      rgba(8, 26, 45, 0.2) 66%,
+      rgba(8, 24, 43, 0.06) 100%
+    ),
+    linear-gradient(0deg, rgba(5, 16, 30, 0.5), transparent 55%), url('/media/cta.png');
+  background-size: cover;
+  background-position: center;
+  padding: 62px 0 60px;
+  color: white;
+  border-block: 1px solid #36537333;
+}
+.closing-copy {
+  max-width: 570px;
+}
+.closing-copy .eyebrow {
+  color: #b5d7ff;
+}
+.closing-copy h2 {
+  color: #fff;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 27px;
+}
+.closing-copy > p:not(.eyebrow) {
+  max-width: 500px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0eaf6;
+  margin-bottom: 32px;
+}
+.closing-copy .button {
+  min-height: 52px;
+}
+.closing-copy .button:focus-visible {
+  outline: 3px solid #b8e2ff;
+  outline-offset: 5px;
+}
+@media (max-width: 1000px) {
+  .closing-section {
+    padding: 60px 0;
+  }
+  .closing-copy {
+    max-width: 510px;
+  }
+  .closing-copy h2 {
+    font-size: 3.3rem;
+  }
+}
+@media (max-width: 600px) {
+  .closing-section {
+    padding: 62px 0;
+    background-image:
+      linear-gradient(90deg, rgba(5, 17, 33, 0.83), rgba(8, 26, 45, 0.7)), url('/media/cta.png');
+    background-position: center;
+  }
+  .closing-copy {
+    text-align: center;
+    max-width: 480px;
+    margin: auto;
+  }
+  .closing-copy h2 {
+    font-size: clamp(2.2rem, 9vw, 3.1rem);
+  }
+  .closing-copy > p:not(.eyebrow) {
+    font-size: 1.02rem;
+  }
+  .closing-copy .button {
+    min-width: 180px;
+  }
+}
+
+.closing-copy h2 span {
+  color: #419cff;
+}
+.closing-copy .button {
+  border-radius: 999px;
+  padding-inline: 30px;
+  min-height: 56px;
+}

@@ -2,7 +2,7 @@ import { Component, inject, signal, HostListener } from '@angular/core';
 import { RouterOutlet, RouterLink, Router, NavigationEnd } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { LanguageService } from './language';
-import { RESQ_LINKS, RESQ_SEGMENTS } from './resq.config';
+import { RESQ_LINKS, RESQ_FOOTER } from './resq.config';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   imports: [RouterOutlet, RouterLink],
@@ -17,10 +17,20 @@ export class App {
   menu = signal(false);
   scrolled = signal(false);
   links = RESQ_LINKS;
-  segments = RESQ_SEGMENTS;
-  year = new Date().getFullYear();
+  footer = RESQ_FOOTER;
+  navigation = [
+    { id: 'solucion', es: 'Valor', en: 'Value' },
+    { id: 'beneficios', es: 'Beneficios', en: 'Benefits' },
+    { id: 'producto', es: 'Cómo funciona', en: 'How it works' },
+    { id: 'soluciones-infraestructura', es: 'Planes', en: 'Plans' },
+    { id: 'nosotros', es: 'Sobre nosotros', en: 'About us' },
+    { id: 'aliados', es: 'Aliados', en: 'Allies' },
+  ];
   constructor() {
-    this.viewportScroller.setOffset(() => [0, window.innerWidth <= 800 ? 88 : 104]);
+    this.viewportScroller.setOffset(() => [
+      0,
+      (document.querySelector('.site-header')?.getBoundingClientRect().height || 86) + 12,
+    ]);
     this.router.events.pipe(takeUntilDestroyed()).subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.menu.set(false);
