@@ -1,0 +1,77 @@
+<section
+  class="hero"
+  role="region"
+  [attr.aria-label]="t('Presentación de ResQ', 'ResQ introduction')"
+  aria-roledescription="carousel"
+  tabindex="0"
+  (mouseenter)="hover = true"
+  (mouseleave)="hover = false"
+  (focusin)="focused = true"
+  (focusout)="focused = false"
+  (keydown)="keyboard($event)"
+  (touchstart)="start($event)"
+  (touchend)="end($event)"
+>
+  @for (segment of segments; track segment.id; let i = $index) {
+    <div
+      class="hero-slide"
+      [class.hero-slide--integrators]="i === 1"
+      [class.active]="slide() === i"
+      [attr.aria-hidden]="slide() !== i"
+      [attr.inert]="slide() !== i ? '' : null"
+      role="group"
+      aria-roledescription="slide"
+      [attr.aria-label]="i + 1 + ' / 2'"
+    >
+      <resq-media
+        class="hero-background"
+        kind="hero"
+        [priority]="i === 0"
+        [asset]="'hero-segment-0' + (i + 1)"
+        [purpose]="segment.name[language.current()]"
+      />
+      <div class="hero-overlay"></div>
+      <div class="hero-copy container">
+        <h1>{{ segment.hero[language.current()] }}</h1>
+        <p class="hero-description">{{ segment.heroCopy[language.current()] }}</p>
+        <a class="button primary" [href]="link(i)"
+          >{{ segment.heroCta[language.current()] }} <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </div>
+  }
+  <div class="hero-bottom container">
+    <div class="carousel-controls">
+      <button
+        (click)="select(slide() - 1)"
+        [attr.aria-label]="t('Slide anterior', 'Previous slide')"
+      >
+        ←
+      </button>
+      @for (segment of segments; track segment.id; let i = $index) {
+        <button
+          class="slide-dot"
+          [class.selected]="slide() === i"
+          [attr.aria-label]="t('Mostrar segmento ', 'Show segment ') + (i + 1)"
+          [attr.aria-pressed]="slide() === i"
+          (click)="select(i)"
+        >
+          <span></span>
+        </button>
+      }
+      <button (click)="select(slide() + 1)" [attr.aria-label]="t('Siguiente slide', 'Next slide')">
+        →
+      </button>
+      <button
+        (click)="paused.set(!paused())"
+        [attr.aria-label]="
+          paused()
+            ? t('Reanudar carrusel', 'Resume carousel')
+            : t('Pausar carrusel', 'Pause carousel')
+        "
+      >
+        {{ paused() ? '▶' : 'Ⅱ' }}
+      </button>
+    </div>
+  </div>
+</section>

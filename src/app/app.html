@@ -1,0 +1,120 @@
+<a class="skip-link" href="#main">{{ t('Saltar al contenido', 'Skip to content') }}</a>
+<header class="site-header" [class.scrolled]="scrolled()">
+  <div class="container nav-inner">
+    <a class="wordmark" routerLink="/" aria-label="ResQ"
+      ><img class="brand-logo" src="/media/resq-logo.png" alt="ResQ" width="170" height="60" /></a
+    ><button
+      id="menu-toggle"
+      class="menu-toggle"
+      (click)="menu.set(!menu())"
+      [attr.aria-expanded]="menu()"
+      aria-controls="navigation"
+      [attr.aria-label]="t('Abrir o cerrar menú', 'Toggle menu')"
+    >
+      {{ menu() ? '×' : '☰' }}
+    </button>
+    <nav
+      id="navigation"
+      [class.open]="menu()"
+      [attr.aria-label]="t('Navegación principal', 'Main navigation')"
+    >
+      <a routerLink="/" fragment="solucion" (click)="menu.set(false)">{{
+        t('Solución', 'Solution')
+      }}</a
+      ><a routerLink="/" fragment="como-funciona" (click)="menu.set(false)">{{
+        t('Cómo funciona', 'How it works')
+      }}</a
+      ><a routerLink="/" fragment="segmentos" (click)="menu.set(false)">{{
+        t('Segmentos', 'Segments')
+      }}</a
+      ><a routerLink="/" fragment="nosotros" (click)="menu.set(false)">{{
+        t('Nosotros', 'About us')
+      }}</a>
+      <div class="language-switch" role="group" [attr.aria-label]="t('Idioma', 'Language')">
+        <button
+          (click)="language.set('es')"
+          [attr.aria-pressed]="language.current() === 'es'"
+          lang="es"
+          [attr.aria-label]="t('Cambiar a español', 'Switch to Spanish')"
+        >
+          ES</button
+        ><button
+          (click)="language.set('en')"
+          [attr.aria-pressed]="language.current() === 'en'"
+          lang="en"
+          [attr.aria-label]="t('Cambiar a inglés', 'Switch to English')"
+        >
+          EN
+        </button>
+      </div>
+      <a class="button nav-cta" routerLink="/" fragment="explorar" (click)="menu.set(false)"
+        >{{ t('Explora ResQ', 'Explore ResQ') }} <span aria-hidden="true">↗</span></a
+      >
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1"><router-outlet /></main>
+<footer>
+  <div class="container footer-top">
+    <div class="footer-brand">
+      <a class="wordmark" routerLink="/"
+        ><img class="brand-logo" src="/media/resq-logo.png" alt="ResQ" width="170" height="60"
+      /></a>
+      <p>
+        {{
+          t(
+            'Conectar la información. Anticipar el riesgo. Acercar la respuesta.',
+            'Connect information. Anticipate risk. Bring response closer.'
+          )
+        }}
+      </p>
+      <span class="eyebrow">{{
+        t('TECNOLOGÍA CENTRADA EN LAS PERSONAS', 'PEOPLE-CENTERED TECHNOLOGY')
+      }}</span>
+    </div>
+    <div>
+      <h3>{{ t('Explorar', 'Explore') }}</h3>
+      <a routerLink="/" fragment="solucion">{{ t('La solución', 'The solution') }}</a
+      ><a routerLink="/" fragment="como-funciona">{{ t('Cómo funciona', 'How it works') }}</a
+      ><a routerLink="/" fragment="nosotros">{{ t('Producto y equipo', 'Product and team') }}</a>
+    </div>
+    <div>
+      <h3>{{ t('Segmentos', 'Segments') }}</h3>
+      @for (segment of segments; track segment.id; let i = $index) {
+        <a routerLink="/" [fragment]="'segment-' + (i + 1)">{{
+          segment.name[language.current()]
+        }}</a>
+      }
+    </div>
+    <div>
+      <h3>{{ t('Contacto', 'Contact') }}</h3>
+      @if (links.contactEmail) {
+        <a [href]="'mailto:' + links.contactEmail">{{ links.contactEmail }}</a>
+      } @else {
+        <span class="contact-pending">{{
+          t('[Contacto por configurar]', '[Contact to configure]')
+        }}</span>
+      }
+      <div
+        class="language-switch"
+        role="group"
+        [attr.aria-label]="t('Idioma del sitio', 'Site language')"
+      >
+        <button (click)="language.set('es')" [attr.aria-pressed]="language.current() === 'es'">
+          ES
+        </button>
+        <button (click)="language.set('en')" [attr.aria-pressed]="language.current() === 'en'">
+          EN
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {{ year }} ResQ</span>
+    <div>
+      <a routerLink="/privacy">{{ t('Política de privacidad', 'Privacy Policy') }}</a
+      ><a routerLink="/terms">{{ t('Términos y condiciones', 'Terms & Conditions') }}</a>
+    </div>
+    <span>{{ t('Detectar. Alertar. Proteger.', 'Detect. Alert. Protect.') }}</span>
+  </div>
+</footer>
