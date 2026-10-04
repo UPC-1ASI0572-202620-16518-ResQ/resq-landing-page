@@ -11,7 +11,7 @@
       rgba(8, 26, 45, 0.2) 66%,
       rgba(8, 24, 43, 0.06) 100%
     ),
-    linear-gradient(0deg, rgba(5, 16, 30, 0.5), transparent 55%), url('/media/cta.png');
+    linear-gradient(0deg, rgba(5, 16, 30, 0.5), transparent 55%), url('../../public/media/cta.png');
   background-size: cover;
   background-position: center;
   padding: 62px 0 60px;
@@ -60,7 +60,8 @@
   .closing-section {
     padding: 62px 0;
     background-image:
-      linear-gradient(90deg, rgba(5, 17, 33, 0.83), rgba(8, 26, 45, 0.7)), url('/media/cta.png');
+      linear-gradient(90deg, rgba(5, 17, 33, 0.83), rgba(8, 26, 45, 0.7)),
+      url('../../public/media/cta.png');
     background-position: center;
   }
   .closing-copy {

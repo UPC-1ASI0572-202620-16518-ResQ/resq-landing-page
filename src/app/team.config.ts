@@ -1,9 +1,9 @@
 export const RESQ_TEAM: { name: string; photo: string; role?: { es: string; en: string } }[] = [
-  { name: 'Gonzalo Aliaga', photo: '/media/Gonzalo.jpg' },
-  { name: 'Eduardo Chacaliaza', photo: '/media/Eduardo.png' },
-  { name: 'Pedro Nanfuñay', photo: '/media/Pedro.jpg' },
-  { name: 'Fabricio Quispe', photo: '/media/Fabricio.png' },
-  { name: 'Fernando Sanchez', photo: '/media/Fernando.png' },
+  { name: 'Gonzalo Aliaga', photo: 'media/Gonzalo.jpg' },
+  { name: 'Eduardo Chacaliaza', photo: 'media/Eduardo.png' },
+  { name: 'Pedro Nanfuñay', photo: 'media/Pedro.jpg' },
+  { name: 'Fabricio Quispe', photo: 'media/Fabricio.png' },
+  { name: 'Fernando Sanchez', photo: 'media/Fernando.png' },
 ];
 export const RESQ_INSTITUTIONAL = {
   mission: {

@@ -60,7 +60,7 @@ export function videoDestination(raw: string): { embed?: string; external?: stri
         </button>
       } @else {
         <div class="team-video-art" aria-hidden="true">
-          <img src="/media/resq-icon.png" alt="" width="100" height="100" />
+          <img src="media/resq-icon.png" alt="" width="100" height="100" />
         </div>
         @if (destination.embed || destination.external) {
           <button

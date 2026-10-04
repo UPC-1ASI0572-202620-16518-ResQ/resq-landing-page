@@ -13,7 +13,7 @@ import { RESQ_MEDIA } from './resq.config';
           decoding="async"
         />
       } @else {
-        <img src="/media/resq-icon.png" alt="" aria-hidden="true" />
+        <img src="media/resq-icon.png" alt="" aria-hidden="true" />
       }
     </div>
   `,

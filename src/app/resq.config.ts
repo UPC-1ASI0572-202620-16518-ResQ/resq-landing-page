@@ -97,10 +97,10 @@ export const RESQ_VIDEOS = {
   team: { url: RESQ_LINKS.aboutTeamVideo, provider: 'youtube', duration: '' },
 };
 export const RESQ_MEDIA: Record<string, string> = {
-  'hero-segment-01': '/media/hero-01.png',
-  'hero-segment-02': '/media/hero-02.png',
+  'hero-segment-01': 'media/hero-01.png',
+  'hero-segment-02': 'media/hero-02.png',
 };
-export const RESQ_PRODUCT_VIDEO = { src: '/media/resq.mp4', poster: '', captions: '' };
+export const RESQ_PRODUCT_VIDEO = { src: 'media/resq.mp4', poster: '', captions: '' };
 export const RESQ_FOOTER = {
   phone: '+51 948 742 332',
   phoneHref: 'tel:+51948742332',
